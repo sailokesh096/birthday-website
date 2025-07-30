@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Surprise!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" >
+        <h1>Happy Birthday Abi! 🎉</h1>
+        <p>Click the gift box to reveal your surprise!</p>
+        
+        <div class="gift-box" id="giftBox">
+            <div class="lid" ></div>
+            <div class="ribbon"></div>
+            <div class="bow"></div>
+            <div class="surprise">
+                <h2 style="color: #e74c3c; margin-bottom: 10px; animation: bounce 0.5s ease infinite alternate;">Surprise! 🎂</h2>
+                <p style="color: #333; font-size: 1rem;">May your birthday be 
+                    filled with joy, laughter, 
+                    and wonderful surprises!</p>
+                <div style="margin-top: 10px; font-size: 2rem;">🥳</div>
+            </div>
+        </div>
+        
+        <div class="photo-slider">
+            <div class="slides" id="slides">
+                <div class="slide">
+                    <img src="https://res.cloudinary.com/dldh9ka6b/image/upload/v1753839790/image1_lixbhf.jpg" alt="image1">
+                </div>
+                <div class="slide">
+                    <img src="https://res.cloudinary.com/dldh9ka6b/image/upload/v1753840186/image2_uhtzaf.jpg" alt="image2">
+                </div>
+                <div class="slide">
+                    <img src="https://res.cloudinary.com/dldh9ka6b/image/upload/v1753840239/image3_c40yls.jpg" alt="image3">
+                </div>
+                <div class="slide">
+                    <img src="https://res.cloudinary.com/dldh9ka6b/image/upload/v1753840270/image4_sln1tn.jpg" alt="image4">
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+        
+        <div class="quote" >
+            "Our friendship isn’t measured in years, laughs, or tears — though we’ve shared all of those. It’s measured in the quiet knowing that no matter what, she’s there. And I am too."
+        </div>
+    </div>
+
+    <script>
+        const giftBox = document.getElementById('giftBox');
+        giftBox.addEventListener('click', function() {
+            this.classList.toggle('open');
+            
+            
+            if (this.classList.contains('open')) {
+                createConfetti();
+            }
+        });
+        const slides = document.getElementById('slides');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+
+        function goToSlide(slide) {
+            slides.style.transform = `translateX(-${slide * 25}%)`;
+            currentSlide = slide;
+        }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % 4;
+            goToSlide(currentSlide);
+        }
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + 4) % 4;
+            goToSlide(currentSlide);
+        }
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        setInterval(nextSlide, 5000);
+        function createConfetti() {
+            const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+            for (let i = 0; i < 150; i++) {
+                if (Math.random() > 0.7) {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('sparkle');
+                    sparkle.style.left = Math.random() * 100 + 'vw';
+                    sparkle.style.top = Math.random() * 100 + 'vh';
+                    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.body.appendChild(sparkle);
+                }
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                document.body.appendChild(confetti);
+                
+                const animationDuration = Math.random() * 3 + 2;
+                
+                confetti.animate([
+                    { top: '-10px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: animationDuration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.5, 1)'
+                });
+                
+                setTimeout(() => {
+                    confetti.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }, 10);
+            }
+        }
+    </script>
+</body>
+</html>

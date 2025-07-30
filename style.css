@@ -1,0 +1,229 @@
+  
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.8), 
+                 0 0 20px rgba(255, 105, 180, 0.6), 
+                 0 0 30px rgba(255, 182, 193, 0.4);
+    animation: glow 2s ease-in-out infinite alternate;
+    margin-bottom: 10px;
+}
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 20, 147, 0.8), 
+                     0 0 20px rgba(255, 105, 180, 0.6), 
+                     0 0 30px rgba(255, 182, 193, 0.4);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 20, 147, 1), 
+                     0 0 30px rgba(255, 105, 180, 0.8), 
+                     0 0 40px rgba(255, 182, 193, 0.6);
+    }
+}
+
+        .gift-box {
+            width: 300px;
+            height: 200px;
+            background: #e74c3c;
+            margin: 0 auto 40px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.6);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .gift-box .lid {
+            width: 100%;
+            height: 50px;
+            background: #c0392b;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.5s ease;
+            transform-origin: top center;
+            box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-box .ribbon {
+            width: 50px;
+            height: 20px;
+            background: #f1c40f;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 20px;
+        }
+
+        .gift-box .bow {
+            width: 40px;
+            height: 20px;
+            background: #f1c40f;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .gift-box .surprise {
+            width: 100%;
+            height: 200px;
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+        }
+
+        .gift-box.open .lid {
+            transform: rotateX(180deg);
+        }
+
+        .gift-box.open .surprise {
+            opacity: 1;
+        }
+
+        .photo-slider {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            width: 25%;
+            height: 135%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #fff;
+            margin: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            max-width: 600px;
+            line-height: 1.5;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .controls button {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .controls button:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gift-box {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .photo-slider {
+                height: 200px;
+            }
+        }
+    
